@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://hyqi75jxsnv7"]
 
 [ext_resource type="Script" uid="uid://btitk4k85l50" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://ixd0n680p4gy" path="res://Assets/Dummy.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://ikpg0rpl1sbq" path="res://Assets/Dummy-Feet-Hands.png" id="2_cvnsp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 radius = 5.0
@@ -9,13 +9,13 @@ height = 26.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cvnsp")
-arms = false
-legs = false
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_v0iea")
+position = Vector2(2, 0)
+texture = ExtResource("2_cvnsp")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(-1.333334, 0)
+position = Vector2(0.5, -3.75)
+scale = Vector2(0.9, 0.9)
 shape = SubResource("CapsuleShape2D_cvnsp")
