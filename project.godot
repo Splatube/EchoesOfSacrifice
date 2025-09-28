@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Echoes of Sacrifice"
-run/main_scene="uid://cef5k4icdkmcv"
+run/main_scene="uid://ckvi88adfuxww"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/size/initial_position_type=3
 window/size/initial_screen=2
 window/size/borderless=true
