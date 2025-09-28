@@ -9,6 +9,8 @@ height = 26.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cvnsp")
+arms = false
+legs = false
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
