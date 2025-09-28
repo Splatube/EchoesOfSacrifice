@@ -8,7 +8,9 @@ radius = 5.0
 height = 26.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_cvnsp")
+dash_speed = 3.5
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -16,6 +18,6 @@ position = Vector2(2, 0)
 texture = ExtResource("2_cvnsp")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -3.75)
-scale = Vector2(0.9, 0.9)
+position = Vector2(0, 1.5)
+scale = Vector2(0.9, 0.5)
 shape = SubResource("CapsuleShape2D_cvnsp")
