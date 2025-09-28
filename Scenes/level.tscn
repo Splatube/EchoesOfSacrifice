@@ -9,9 +9,8 @@
 [node name="Map" parent="." instance=ExtResource("1_6phgx")]
 
 [node name="Player" parent="." instance=ExtResource("1_tumq0")]
-position = Vector2(1798, 454)
+position = Vector2(780, 438)
 speed = 200
-feet = false
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 zoom = Vector2(5, 5)
