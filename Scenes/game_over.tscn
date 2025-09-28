@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkyh0r1c5lq1p"]
 
-[ext_resource type="Script" uid="uid://cwphamejrky6l" path="res://Assets/Scripts/game_over.gd" id="1_8fo1c"]
-[ext_resource type="FontFile" uid="uid://bcnvnar0btdlk" path="res://Assets/Graphics/Fonts/VeniteAdoremus-rgRBA.ttf" id="1_ojehl"]
+[ext_resource type="Script" uid="uid://2hmtafqgofgg" path="res://Scripts/game_over.gd" id="1_8fo1c"]
+[ext_resource type="FontFile" uid="uid://bra4frp8s4icq" path="res://Assets/Fonts/PixelAzureBonds-327Z.ttf" id="2_ek8ke"]
 
 [node name="GameOver" type="CanvasLayer" groups=["game_over"]]
 script = ExtResource("1_8fo1c")
@@ -34,17 +34,11 @@ layout_mode = 2
 
 [node name="GameOver" type="Label" parent="Center/Text"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_ojehl")
+theme_override_fonts/font = ExtResource("2_ek8ke")
 theme_override_font_sizes/font_size = 60
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Score" type="Label" parent="Center/Text"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_ojehl")
-text = "Your Score: 0"
-horizontal_alignment = 1
 
 [node name="Bottom" type="MarginContainer" parent="."]
 anchors_preset = 7
@@ -59,8 +53,9 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_bottom = 20
 
-[node name="Restart" type="Label" parent="Bottom"]
+[node name="Label" type="Label" parent="Bottom"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_ojehl")
-theme_override_font_sizes/font_size = 22
-text = "[SPace to start again]"
+theme_override_fonts/font = ExtResource("2_ek8ke")
+theme_override_font_sizes/font_size = 20
+text = "[Space to restart]"
+horizontal_alignment = 1
