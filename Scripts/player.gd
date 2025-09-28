@@ -20,6 +20,9 @@ var climbed = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _process(_delta):
+	if Input.is_action_just_pressed("Reset"):
+		get_tree().change_scene_to_file("res://Scenes/level.tscn")
+	
 	if !head and !arms and !legs:
 		player_texture("res://Assets/Dummy-Head-Legs-Arms.png")
 		collision(0.5, 0)
@@ -96,7 +99,7 @@ func _physics_process(delta):
 		velocity.y = direction * climb_speed
 		climbed = true
 		
-	if Input.is_action_just_released("Jump") and is_on_wall() and climbed:
+	if Input.is_action_just_released("Jump") and climbed:
 		hands = false
 		climbed = false
 
