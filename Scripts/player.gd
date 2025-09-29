@@ -84,6 +84,14 @@ func _process(_delta):
 
 
 func _physics_process(delta):
+	get_tree().call_group("UI", "update_limbs", {
+		"head": head,
+		"arms": arms,
+		"hands": hands,
+		"legs": legs,
+		"feet": feet
+		})
+	
 	# Add the gravity.
 	velocity.y += gravity * delta
 
@@ -130,12 +138,9 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-
-		if collider is TileMap:
-			var tilemap: TileMap = collider
-			if tilemap.name.contains("Kill"):
-				if is_inside_tree():
-					get_tree().change_scene_to_packed(gameoverScene)
+		if collider.name.contains("Kill"):
+			if is_inside_tree():
+				get_tree().change_scene_to_packed(gameoverScene)
 			
 
 func player_texture(texture: String) -> void:

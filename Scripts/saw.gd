@@ -1,4 +1,4 @@
-extends TileMap
+extends StaticBody2D
 
 var startPosition
 var targetPosition
@@ -23,9 +23,8 @@ func _process(delta):
 	
 	if Input.is_action_just_released("TimeSlow"):
 		canSlow = false
-	
-	if int(position.x) % 4 == 0:
-		scale.x *= -1
+		
+	$Sprite.speed_scale = slow
 		
 	if forward:
 		if position.x >= targetPosition.x:

@@ -23,6 +23,10 @@ window/size/mode=2
 window/size/initial_position_type=3
 window/size/initial_screen=2
 
+[global_group]
+
+UI=""
+
 [input]
 
 Up={

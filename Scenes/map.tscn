@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2anetkxdn6ft"]
+[gd_scene load_steps=9 format=3 uid="uid://c2anetkxdn6ft"]
 
 [ext_resource type="Texture2D" uid="uid://446o6psrmyv2" path="res://Assets/Dungeon Tile Set.png" id="1_ci6au"]
 [ext_resource type="Script" uid="uid://clx3rhoawrdto" path="res://Scripts/saw.gd" id="2_26yhd"]
+[ext_resource type="Texture2D" uid="uid://c1wtqqsw1stdc" path="res://Assets/saw.png" id="3_myvm1"]
+[ext_resource type="Texture2D" uid="uid://dky58h3lcc76t" path="res://Assets/saw2.png" id="4_q0mm3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26yhd"]
 texture = ExtResource("1_ci6au")
@@ -190,7 +192,25 @@ texture = ExtResource("1_ci6au")
 physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_26yhd")
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_np2xp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_myvm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_q0mm3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_myvm1"]
+radius = 23.021729
+
 [node name="Map" type="Node2D"]
+position = Vector2(2062.0103, 215.29652)
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -209,12 +229,17 @@ format = 2
 layer_0/name = "Layer2"
 layer_0/tile_data = PackedInt32Array(1965956, 131072, 14, 1965957, 196608, 14, 1965958, 131072, 14, 1965959, 262144, 14, 1965960, 327680, 14, 1769412, 131072, 14, 1769413, 196608, 14, 1769414, 262144, 14, 1769415, 262144, 14, 1769421, 131072, 14, 1769422, 65536, 14, 1769423, 131072, 14, 1769424, 196608, 14, 1769416, 327680, 14, 1769417, 393216, 14, 1769418, 65536, 14, 1769419, 262144, 14, 1769420, 196608, 14, 1769425, 262144, 14)
 
-[node name="KillSaw" type="TileMap" parent="."]
-texture_filter = 1
-position = Vector2(3571, 166)
-tile_set = SubResource("TileSet_p3ir5")
-format = 2
-layer_0/name = "Layer2"
-layer_0/tile_data = PackedInt32Array(589741, 458752, 15)
+[node name="KillSaw" type="StaticBody2D" parent="."]
+position = Vector2(2250, 302)
+collision_layer = 2
 script = ExtResource("2_26yhd")
-speed = 600
+
+[node name="Sprite" type="AnimatedSprite2D" parent="KillSaw"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_np2xp")
+autoplay = "default"
+frame_progress = 0.876768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillSaw"]
+position = Vector2(-0.010253906, -14.296509)
+shape = SubResource("CircleShape2D_myvm1")

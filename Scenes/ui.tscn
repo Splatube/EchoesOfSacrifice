@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://djf0u78boh7ui"]
+
+[ext_resource type="Script" uid="uid://elf0lwu7lo8v" path="res://Scripts/ui.gd" id="1_jxero"]
+
+[node name="UI" type="CanvasLayer" groups=["UI"]]
+script = ExtResource("1_jxero")
+
+[node name="Top Left" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="Minifig" type="VBoxContainer" parent="Top Left"]
+layout_mode = 2
+
+[node name="Head" type="ColorRect" parent="Top Left/Minifig"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Body" type="HBoxContainer" parent="Top Left/Minifig"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Left Arm" type="VBoxContainer" parent="Top Left/Minifig/Body"]
+layout_mode = 2
+
+[node name="Left Arm" type="ColorRect" parent="Top Left/Minifig/Body/Left Arm"]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Left Hand" type="ColorRect" parent="Top Left/Minifig/Body/Left Arm"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Body" type="ColorRect" parent="Top Left/Minifig/Body"]
+custom_minimum_size = Vector2(20, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Right Arm" type="VBoxContainer" parent="Top Left/Minifig/Body"]
+layout_mode = 2
+
+[node name="Right Arm" type="ColorRect" parent="Top Left/Minifig/Body/Right Arm"]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Right Hand" type="ColorRect" parent="Top Left/Minifig/Body/Right Arm"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Legs" type="HBoxContainer" parent="Top Left/Minifig"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Left Leg" type="VBoxContainer" parent="Top Left/Minifig/Legs"]
+layout_mode = 2
+
+[node name="Left Leg" type="ColorRect" parent="Top Left/Minifig/Legs/Left Leg"]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Left Foot" type="ColorRect" parent="Top Left/Minifig/Legs/Left Leg"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Right Leg" type="VBoxContainer" parent="Top Left/Minifig/Legs"]
+layout_mode = 2
+
+[node name="Right Leg" type="ColorRect" parent="Top Left/Minifig/Legs/Right Leg"]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Right Foot" type="ColorRect" parent="Top Left/Minifig/Legs/Right Leg"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 4
