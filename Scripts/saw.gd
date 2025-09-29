@@ -11,7 +11,7 @@ var canSlow = true
 func _ready():
 	startPosition = position
 	targetPosition = position
-	targetPosition.x += 177
+	targetPosition.x += 175
 	
 
 func _process(delta):
@@ -24,13 +24,16 @@ func _process(delta):
 	if Input.is_action_just_released("TimeSlow"):
 		canSlow = false
 	
+	if int(position.x) % 4 == 0:
+		scale.x *= -1
+		
 	if forward:
 		if position.x >= targetPosition.x:
 			forward = false
 		else:
-			position.x += 350 * delta * slow
+			position.x += speed * delta * slow
 	else:
 		if position.x <= startPosition.x:
 			forward = true
 		else:
-			position.x -= 350 * delta * slow
+			position.x -= speed * delta * slow
