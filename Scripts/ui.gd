@@ -1,5 +1,10 @@
 extends CanvasLayer
 
+func limit_vision():
+	$"Vignette Container/Vignette".material.set_shader_parameter("alpha", 1.0)
+	print("blind")
+	
+
 func update_limbs(limbs):
 	$"Top Left/Minifig/Head".color = "#ffffff" if limbs["head"] else "#ff0000"
 	$"Top Left/Minifig/Body/Left Arm/Left Arm".color = "#ffffff" if limbs["arms"] else "#ff0000"

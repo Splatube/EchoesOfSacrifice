@@ -98,6 +98,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("TimeSlow") and canSlow:
 		slowed = true
 		head = false
+		get_tree().call_group("UI", "limit_vision")
 	if Input.is_action_just_released("TimeSlow") and slowed:
 		canSlow = false
 		slowed = false

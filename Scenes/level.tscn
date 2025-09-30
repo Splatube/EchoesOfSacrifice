@@ -11,10 +11,11 @@
 position = Vector2(-902, -98)
 
 [node name="Player" parent="." instance=ExtResource("1_tumq0")]
-position = Vector2(1262, 196)
+position = Vector2(-127.448425, 346.55545)
 speed = 200
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(-123, 343)
 zoom = Vector2(5, 5)
 script = ExtResource("3_6phgx")
 target = NodePath("../Player")

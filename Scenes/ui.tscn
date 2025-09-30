@@ -1,13 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://djf0u78boh7ui"]
+[gd_scene load_steps=5 format=3 uid="uid://djf0u78boh7ui"]
 
 [ext_resource type="Script" uid="uid://elf0lwu7lo8v" path="res://Scripts/ui.gd" id="1_jxero"]
+[ext_resource type="Shader" uid="uid://bqxefuttegcit" path="res://Scripts/vignette.gdshader" id="2_nf4gj"]
+[ext_resource type="Texture2D" uid="uid://dmfgjgrswa6k4" path="res://icon.svg" id="3_2246s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7pk6"]
+shader = ExtResource("2_nf4gj")
+shader_parameter/alpha = 0.7
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.0
 
 [node name="UI" type="CanvasLayer" groups=["UI"]]
 script = ExtResource("1_jxero")
 
+[node name="Vignette Container" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vignette" type="TextureRect" parent="Vignette Container" groups=["UI"]]
+material = SubResource("ShaderMaterial_q7pk6")
+layout_mode = 2
+texture = ExtResource("3_2246s")
+
 [node name="Top Left" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 58.0
+offset_bottom = 106.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
