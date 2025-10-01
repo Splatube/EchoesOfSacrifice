@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://bplolvlac6pga"]
+
+[ext_resource type="Script" uid="uid://cukmd7apb6in2" path="res://Scripts/pause.gd" id="1_l2mpd"]
+[ext_resource type="FontFile" uid="uid://bra4frp8s4icq" path="res://Assets/Fonts/PixelAzureBonds-327Z.ttf" id="2_5a6ek"]
+
+[node name="Pause" type="CanvasLayer" groups=["UI", "pausable"]]
+script = ExtResource("1_l2mpd")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.45882353)
+
+[node name="Pause" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_right = 209.0
+offset_bottom = -445.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_5a6ek")
+theme_override_font_sizes/font_size = 60
+text = "Game paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -25.0
+offset_right = 115.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/margin_top = 79
+
+[node name="Buttons" type="VBoxContainer" parent="Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Continue" type="Button" parent="Buttons/Buttons"]
+custom_minimum_size = Vector2(270, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_5a6ek")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Continue"
+
+[node name="Settings" type="Button" parent="Buttons/Buttons"]
+custom_minimum_size = Vector2(270, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_5a6ek")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Options"
+
+[node name="Quit" type="Button" parent="Buttons/Buttons"]
+custom_minimum_size = Vector2(270, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_5a6ek")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Quit"
+
+[connection signal="pressed" from="Buttons/Buttons/Continue" to="." method="_on_continue_pressed"]

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+## Variables ##
+
 @export_category("Speed")
 @export var speed := 150
 @export var climb_speed := 100
@@ -20,8 +22,13 @@ var climbed = false
 var slowed = false
 var canSlow = true
 
+var paused = false
+
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func _ready():
+	get_tree().call_group("UI", "limit_vision", 0.2)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Reset"):
@@ -82,68 +89,81 @@ func _process(_delta):
 		player_texture("res://Assets/Dummy.png")
 		player_collision(1,0)
 
+func pause_game(pause):
+	paused = pause
 
 func _physics_process(delta):
-	get_tree().call_group("UI", "update_limbs", {
-		"head": head,
-		"arms": arms,
-		"hands": hands,
-		"legs": legs,
-		"feet": feet
-		})
+	# Pause menu
+	if Input.is_action_just_pressed("Pause"):
+		get_tree().call_group("pausable", "pause_game", !$"../Pause".is_visible())
 	
-	# Add the gravity.
-	velocity.y += gravity * delta
-
-	if Input.is_action_pressed("TimeSlow") and canSlow:
-		slowed = true
-		head = false
-		get_tree().call_group("UI", "limit_vision")
-	if Input.is_action_just_released("TimeSlow") and slowed:
-		canSlow = false
-		slowed = false
+	if !paused:
+		get_tree().call_group("UI", "update_limbs", {
+			"head": head,
+			"arms": arms,
+			"hands": hands,
+			"legs": legs,
+			"feet": feet
+			})
 		
-	# Handle Jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor() and (feet):
-		velocity.y = -jump_speed
-		feet = false
+		# Add the gravity.
+		velocity.y += gravity * delta
 
-	if Input.is_action_just_pressed("Dash") and legs:
-		dash = dash_speed
-		legs = false
-		feet = false
-		await get_tree().create_timer(0.25).timeout
-		dash = 1
-
-	if Input.is_action_pressed("Jump") and is_on_wall() and hands:
-		var direction = Input.get_axis("Up", "Down")
-		velocity.y = direction * climb_speed
-		climbed = true
-		
-	if Input.is_action_just_released("Jump") and climbed:
-		hands = false
-		climbed = false
-
-	else:
-		# Get the input direction.
-		var direction = Input.get_axis("Left", "Right")
-		velocity.x = direction * speed * dash
-		
-		if Input.is_action_just_pressed("Left"):
-			$Sprite.set_flip_h(true)
-		elif Input.is_action_just_pressed("Right"):
-			$Sprite.set_flip_h(false)
-	
-	move_and_slide()
-	
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		if collider.name.contains("Kill"):
-			if is_inside_tree():
-				get_tree().change_scene_to_packed(gameoverScene)
+		# Slow time
+		if Input.is_action_pressed("TimeSlow") and canSlow:
+			slowed = true
+			head = false
+			get_tree().call_group("UI", "limit_vision", 1.5)
+		if Input.is_action_just_released("TimeSlow") and slowed:
+			canSlow = false
+			slowed = false
 			
+		# Jump
+		if Input.is_action_just_pressed("Jump") and is_on_floor() and (feet):
+			velocity.y = -jump_speed
+			feet = false
 
+		# Dash
+		if Input.is_action_just_pressed("Dash") and legs:
+			dash = dash_speed
+			legs = false
+			feet = false
+			await get_tree().create_timer(0.25).timeout
+			dash = 1
+
+		# Climb
+		if (Input.is_action_just_pressed("Jump") and is_on_wall() and hands) or climbed:
+			var direction = Input.get_axis("Up", "Down")
+			velocity.y = direction * climb_speed
+			climbed = true
+		if climbed and !is_on_wall():
+			hands = false
+			climbed = false
+
+		else:
+			# Get the input direction.
+			var direction = Input.get_axis("Left", "Right")
+			velocity.x = direction * speed * dash
+			
+			# Face input direction
+			if Input.is_action_just_pressed("Left"):
+				$Sprite.set_flip_h(true)
+			elif Input.is_action_just_pressed("Right"):
+				$Sprite.set_flip_h(false)
+		
+		move_and_slide()
+		
+		# Death collision
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			var collider = collision.get_collider()
+			if collider.name.contains("Kill"):
+				if is_inside_tree():
+					get_tree().change_scene_to_packed(gameoverScene)
+
+##  Subroutines  ##
+
+# Set player sprite
 func player_texture(texture: String) -> void:
 	$Sprite.texture = load(texture)
 

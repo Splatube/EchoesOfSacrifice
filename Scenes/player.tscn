@@ -7,7 +7,7 @@
 radius = 5.0
 height = 26.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["pausable"]]
 collision_mask = 2
 script = ExtResource("1_cvnsp")
 dash_speed = 3.5

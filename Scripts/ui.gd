@@ -1,8 +1,7 @@
 extends CanvasLayer
 
-func limit_vision():
-	$"Vignette Container/Vignette".material.set_shader_parameter("alpha", 1.0)
-	print("blind")
+func limit_vision(value: float):
+	$"Vignette Container/Vignette".material.set_shader_parameter("alpha", value)
 	
 
 func update_limbs(limbs):

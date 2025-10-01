@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckvi88adfuxww"]
+[gd_scene load_steps=6 format=3 uid="uid://ckvi88adfuxww"]
 
 [ext_resource type="PackedScene" uid="uid://c2anetkxdn6ft" path="res://Scenes/map.tscn" id="1_6phgx"]
 [ext_resource type="PackedScene" uid="uid://hyqi75jxsnv7" path="res://Scenes/player.tscn" id="1_tumq0"]
 [ext_resource type="Script" uid="uid://emf5mjyeyw17" path="res://Scripts/camera.gd" id="3_6phgx"]
 [ext_resource type="PackedScene" uid="uid://djf0u78boh7ui" path="res://Scenes/ui.tscn" id="4_81xng"]
+[ext_resource type="PackedScene" uid="uid://bplolvlac6pga" path="res://Scenes/pause.tscn" id="5_wqkje"]
 
 [node name="Level" type="Node2D"]
 
@@ -20,4 +21,7 @@ zoom = Vector2(5, 5)
 script = ExtResource("3_6phgx")
 target = NodePath("../Player")
 
-[node name="UI" parent="Camera2D" instance=ExtResource("4_81xng")]
+[node name="UI" parent="." instance=ExtResource("4_81xng")]
+
+[node name="Pause" parent="." instance=ExtResource("5_wqkje")]
+visible = false
